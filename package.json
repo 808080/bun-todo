@@ -2,6 +2,9 @@
   "name": "todo",
   "version": "1.0.0",
   "module": "src/index.js",
+  "engines": {
+    "bun": "0.7.3"
+  },
   "workspaces": [
     "packages/*"
   ]
