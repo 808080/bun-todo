@@ -1,3 +1,17 @@
 {
-	"/": []
+	"/": [
+		"src/routes/+page.server.ts"
+	],
+	"/api/remove": [
+		"src/routes/api/remove/+server.ts"
+	],
+	"/api/update": [
+		"src/routes/api/update/+server.ts"
+	],
+	"/signin": [
+		"src/routes/signin/+page.server.ts"
+	],
+	"/signup": [
+		"src/routes/signup/+page.server.ts"
+	]
 }

@@ -7,6 +7,9 @@
     "migrate": "prisma migrate dev"
   },
   "dependencies": {
+    "@elysiajs/cookie": "^0.6.1",
+    "@elysiajs/cors": "^0.6.0",
+    "@elysiajs/jwt": "^0.6.3",
     "@prisma/client": "5.0.0",
     "elysia": "latest"
   },

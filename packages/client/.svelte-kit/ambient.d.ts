@@ -27,7 +27,9 @@
  */
 declare module '$env/static/private' {
 	export const SHELL: string;
+	export const COLORTERM: string;
 	export const WSL2_GUI_APPS_ENABLED: string;
+	export const TERM_PROGRAM_VERSION: string;
 	export const WSL_DISTRO_NAME: string;
 	export const NODE: string;
 	export const npm_config_local_prefix: string;
@@ -35,17 +37,21 @@ declare module '$env/static/private' {
 	export const PWD: string;
 	export const LOGNAME: string;
 	export const _: string;
+	export const VSCODE_GIT_ASKPASS_NODE: string;
 	export const HOME: string;
 	export const LANG: string;
 	export const WSL_INTEROP: string;
 	export const LS_COLORS: string;
 	export const npm_package_version: string;
 	export const WAYLAND_DISPLAY: string;
+	export const GIT_ASKPASS: string;
+	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const LESSCLOSE: string;
 	export const TERM: string;
 	export const npm_package_name: string;
 	export const LESSOPEN: string;
 	export const USER: string;
+	export const VSCODE_GIT_IPC_HANDLE: string;
 	export const DISPLAY: string;
 	export const npm_lifecycle_event: string;
 	export const SHLVL: string;
@@ -55,12 +61,15 @@ declare module '$env/static/private' {
 	export const WSLENV: string;
 	export const npm_package_json: string;
 	export const BUN_INSTALL: string;
+	export const VSCODE_GIT_ASKPASS_MAIN: string;
 	export const XDG_DATA_DIRS: string;
 	export const PATH: string;
 	export const HOSTTYPE: string;
 	export const PULSE_SERVER: string;
 	export const npm_node_execpath: string;
 	export const OLDPWD: string;
+	export const TERM_PROGRAM: string;
+	export const VSCODE_IPC_HOOK_CLI: string;
 	export const NODE_ENV: string;
 }
 
@@ -92,7 +101,9 @@ declare module '$env/static/public' {
 declare module '$env/dynamic/private' {
 	export const env: {
 		SHELL: string;
+		COLORTERM: string;
 		WSL2_GUI_APPS_ENABLED: string;
+		TERM_PROGRAM_VERSION: string;
 		WSL_DISTRO_NAME: string;
 		NODE: string;
 		npm_config_local_prefix: string;
@@ -100,17 +111,21 @@ declare module '$env/dynamic/private' {
 		PWD: string;
 		LOGNAME: string;
 		_: string;
+		VSCODE_GIT_ASKPASS_NODE: string;
 		HOME: string;
 		LANG: string;
 		WSL_INTEROP: string;
 		LS_COLORS: string;
 		npm_package_version: string;
 		WAYLAND_DISPLAY: string;
+		GIT_ASKPASS: string;
+		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		LESSCLOSE: string;
 		TERM: string;
 		npm_package_name: string;
 		LESSOPEN: string;
 		USER: string;
+		VSCODE_GIT_IPC_HANDLE: string;
 		DISPLAY: string;
 		npm_lifecycle_event: string;
 		SHLVL: string;
@@ -120,12 +135,15 @@ declare module '$env/dynamic/private' {
 		WSLENV: string;
 		npm_package_json: string;
 		BUN_INSTALL: string;
+		VSCODE_GIT_ASKPASS_MAIN: string;
 		XDG_DATA_DIRS: string;
 		PATH: string;
 		HOSTTYPE: string;
 		PULSE_SERVER: string;
 		npm_node_execpath: string;
 		OLDPWD: string;
+		TERM_PROGRAM: string;
+		VSCODE_IPC_HOOK_CLI: string;
 		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
