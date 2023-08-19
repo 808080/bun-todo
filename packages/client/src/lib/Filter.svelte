@@ -8,9 +8,13 @@
 
   let selected: Filters;
 
-  const handleFilter: SubmitFunction<ResponseMessage<TodoList>> = () => {
-    return async ({ update, result, action }) => {
-      selected = action.search.match(/\?\/(.*)/)?.[1] as Filters;
+  const handleFilter: SubmitFunction<ResponseMessage<TodoList>> = ({
+    formData,
+    submitter,
+  }) => {
+    selected = submitter?.textContent as Filters;
+    formData.append("filter", selected);
+    return async ({ update, result }) => {
       if (result.type === "success" && result.data?.success)
         $store.todos = result.data.data;
       await update();
@@ -25,7 +29,7 @@
       type="submit"
       classList="filter"
       disabled={selected === filter}
-      formaction={"?/" + filter}
+      formaction={"?/getTodos"}
     />
   {/each}
 </form>

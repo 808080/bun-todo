@@ -5,7 +5,7 @@ import type { User } from '../../utils/types';
 export const load = ({ cookies }: ServerLoadEvent) => {
   const localUser = cookies.get('auth');
   if (localUser) {
-    throw redirect(303, '/');
+    throw redirect(301, '/');
   }
 };
 
@@ -19,7 +19,7 @@ export const actions = {
 
     if (user.success) {
       if (user.cookies) cookies.set('auth', user.cookies);
-      throw redirect(303, '/');
+      throw redirect(301, '/');
     }
   }
 };

@@ -20,16 +20,16 @@ const todo = (app: Elysia) => app
       data: todos
     };
   }, { query: t.Object({ done: t.Optional(t.String()) }) })
-  .post('/todo', async ({ userId, body: { text } }) => {
+  .post('/todo', async ({ userId, body: { text, done } }) => {
     const todo = await db.task.create({
-      data: { text, userId }
+      data: { text, userId, done }
     });
 
     return {
       success: true,
       data: todo
     };
-  }, { body: t.Object({ text: t.String() }) })
+  }, { body: t.Object({ text: t.String(), done: t.Boolean() }) })
   .delete('/todo', async ({ userId, body: { id } }) => db.task.delete({
     where: {
       id,

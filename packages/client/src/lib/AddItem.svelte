@@ -1,23 +1,25 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
+  import Button from "$lib/components/Button.svelte";
   import type { SubmitFunction } from "@sveltejs/kit";
   import store from "../utils/store";
-  import Button from "./components/Button.svelte";
   import type { Todo } from "../utils/types";
 
-  const addTodo: SubmitFunction = () => {
-    if (!$store.newItem.trim()) return;
+  const addTodo: SubmitFunction<Todo> = ({ action }) => {
+    action.search = "?/add";
+    const text = $store.newItem.trim();
+    if (!text) return;
     $store.newItem = "";
 
     return async ({ update, result }) => {
-      if (result.type === "success")
-        $store.todos = [...$store.todos, result.data as Todo];
+      if (result.type === "success" && result.data)
+        $store.todos = [...$store.todos, result.data];
       await update();
     };
   };
 </script>
 
-<form method="post" action="?/add" use:enhance={addTodo}>
+<form method="post" use:enhance={addTodo}>
   <input
     name="newItem"
     placeholder="What needs to be done?"

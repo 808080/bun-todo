@@ -4,7 +4,7 @@ import { browser } from '$app/environment';
 
 export const STORAGE_NAME = 'store';
 
-const defaultState = {
+const defaultState: Store = {
   todos: [],
   newItem: ''
 };
