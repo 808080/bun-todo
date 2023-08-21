@@ -2,7 +2,7 @@
   export let type: "button" | "submit" | "reset" | null | undefined;
   export let text: string;
   export let classList: string = "";
-  export let formaction: string = "";
+  export let formaction: string | undefined = undefined;
   export let disabled: boolean = false;
 </script>
 

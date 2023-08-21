@@ -22,7 +22,7 @@ export const actions = {
   },
   add: async ({ request, cookies }) => {
     const formData = await request.formData();
-    const text = String(formData.get('newItem'));
+    const text = String(formData.get('newItem')).trim();
     const filter = cookies.get('filter') as Filters;
 
     if (!text) {

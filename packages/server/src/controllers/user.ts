@@ -19,6 +19,12 @@ const user = (app: Elysia) => app
   })
   .post('/signup',
     async ({ body: { username, password } }) => {
+      const duplicate = await db.user.findUnique({ where: { username } });
+      if (duplicate) return {
+        success: false,
+        error: 'Username already taken'
+      };
+
       const user = await db.user.create({
         data: {
           username,

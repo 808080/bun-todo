@@ -5,21 +5,17 @@
   import store from "../utils/store";
   import type { Todo } from "../utils/types";
 
-  const addTodo: SubmitFunction<Todo> = ({ action }) => {
-    action.search = "?/add";
-    const text = $store.newItem.trim();
-    if (!text) return;
-    $store.newItem = "";
-
+  const addTodo: SubmitFunction<Todo> = () => {
     return async ({ update, result }) => {
       if (result.type === "success" && result.data)
         $store.todos = [...$store.todos, result.data];
+      $store.newItem = "";
       await update();
     };
   };
 </script>
 
-<form method="post" use:enhance={addTodo}>
+<form method="post" action="?/add" use:enhance={addTodo}>
   <input
     name="newItem"
     placeholder="What needs to be done?"
