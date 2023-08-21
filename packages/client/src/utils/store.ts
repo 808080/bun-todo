@@ -28,7 +28,7 @@ const createStore = () => {
 
 const store = createStore();
 
-store.subscribe((store: Store) => {
+store.subscribe((store) => {
   if (browser) {
     localStorage.setItem(STORAGE_NAME, JSON.stringify(store));
   }

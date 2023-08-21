@@ -5,32 +5,24 @@
   import { enhance } from "$app/forms";
   import store from "../utils/store";
   import type { PageData } from "./$types";
+  import Button from "$lib/components/Button.svelte";
 
   export let data: PageData;
 
   $store.todos = data.todos;
 </script>
 
-<form action="?/logout" method="post" use:enhance>
-  <button type="submit">Log out</button>
+<form class="logout" action="?/logout" method="post" use:enhance>
+  <Button type="submit" text="Log out" />
 </form>
 
-<main>
-  <AddItem />
-  <List filteredList={{ todos: $store.todos, count: $store.todos.length }} />
-  <Filter />
-</main>
+<AddItem />
+<List filteredList={{ todos: $store.todos, count: $store.todos.length }} />
+<Filter />
 
 <style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  }
-
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
-    width: 320px;
+  .logout {
+    margin-bottom: 20px;
+    text-align: start;
   }
 </style>

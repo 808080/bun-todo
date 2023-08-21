@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from "$app/forms";
+  import Button from "$lib/components/Button.svelte";
 
   let username = "";
   let password = "";
@@ -15,15 +16,23 @@
 <form method="POST" use:enhance>
   <h2>Sign in</h2>
 
-  <label>
-    <input type="text" name="username" bind:value={username} required />
-  </label>
+  <div>
+    <label>
+      Username
+      <input type="text" name="username" bind:value={username} required />
+    </label>
+  </div>
 
-  <label>
-    <input type="text" name="password" bind:value={password} required />
-  </label>
+  <div>
+    <label>
+      Password
+      <input type="text" name="password" bind:value={password} required />
+    </label>
+  </div>
 
-  <button type="submit" on:click={handleSubmit}>Submit</button>
+  <div>
+    <Button type="submit" on:click={handleSubmit} text="Submit" />
+  </div>
 
   <p><a href="/signup">Sign up</a></p>
 </form>
