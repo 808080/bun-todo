@@ -1,37 +1,36 @@
 <script lang="ts">
   import { HTTPmethods } from "../../utils/http";
-  import store from "../../utils/store";
   import type { Todo } from "../../utils/types";
   import Button from "./Button.svelte";
+  import { invalidateAll } from "$app/navigation";
 
   export let todo: Todo;
   export let index: number;
 
+  let initText: string;
   let isEdit = false;
 
   const handleBlur = async () => {
     const val = todo.text.trim();
-    if (val) {
-      todo.text = val;
-      const res = await fetch("/api/update", {
-        method: HTTPmethods.POST,
-        body: JSON.stringify(todo),
-      });
-
-      const data: Todo = await res.json();
-      todo = data;
+    if (!val) {
+      todo.text = initText;
+      isEdit = false;
+      return;
     }
+    todo.text = val;
+    await fetch("/api/update", {
+      method: HTTPmethods.POST,
+      body: JSON.stringify(todo),
+    });
+
     isEdit = false;
   };
 
   const handleChange = async () => {
-    const res = await fetch("/api/update", {
+    await fetch("/api/update", {
       method: HTTPmethods.POST,
       body: JSON.stringify(todo),
     });
-    const data: Todo = await res.json();
-    todo = data;
-    store.update((store) => store);
   };
 
   const handleDelete = async () => {
@@ -39,9 +38,11 @@
       method: HTTPmethods.POST,
       body: JSON.stringify(todo),
     });
-    const data: Todo = await res.json();
-    if (data.id) {
-      $store.todos = $store.todos.filter((t) => t.id !== data.id);
+
+    const result: Todo = await res.json();
+
+    if (result.id) {
+      await invalidateAll();
     }
   };
 </script>
@@ -59,7 +60,7 @@
     <div
       role="textbox"
       tabindex={index}
-      on:dblclick={() => (isEdit = true)}
+      on:dblclick={() => ((isEdit = true), (initText = todo.text))}
       class="text"
     >
       {todo.text}

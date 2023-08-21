@@ -15,6 +15,5 @@ export type Filters = typeof filters[number];
 export type TodoList = Array<Todo>;
 
 export type Store = {
-  todos: TodoList;
   newItem: string;
 };

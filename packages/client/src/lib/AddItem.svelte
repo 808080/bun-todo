@@ -6,9 +6,7 @@
   import type { Todo } from "../utils/types";
 
   const addTodo: SubmitFunction<Todo> = () => {
-    return async ({ update, result }) => {
-      if (result.type === "success" && result.data)
-        $store.todos = [...$store.todos, result.data];
+    return async ({ update }) => {
       $store.newItem = "";
       await update();
     };

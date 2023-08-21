@@ -3,7 +3,6 @@
   import Button from "$lib/components/Button.svelte";
   import type { SubmitFunction } from "@sveltejs/kit";
   import { filters, type Filters, type TodoList } from "../utils/types";
-  import store from "../utils/store";
   import type { ResponseMessage } from "../utils/http";
 
   let selected: Filters;
@@ -14,9 +13,7 @@
   }) => {
     selected = submitter?.textContent as Filters;
     formData.append("filter", selected);
-    return async ({ update, result }) => {
-      if (result.type === "success" && result.data?.success)
-        $store.todos = result.data.data;
+    return async ({ update }) => {
       await update();
     };
   };
